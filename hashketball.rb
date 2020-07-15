@@ -252,7 +252,48 @@ def big_shoe_rebounds
         if nested_structures.class == Array
             nested_structures.each do |nested_hash|
               if nested_hash.class == Hash && nested_hash[:shoe] == largest_shoe
-                    return nested_hash[:rebounds]
+                 return nested_hash[:rebounds]
+              end
+            end
+          end
+        end
+      end
+end
+
+def most_points_scored
+  game_hash
+  array_of_points_scored = []
+
+    game_hash.each do |location, nested_hash|
+      nested_hash.each do |team_data, nested_structures|
+        if nested_structures.class == Array
+            nested_structures.each do |nested_hash|
+              if nested_hash.class == Hash
+                array_of_points_scored.push(nested_hash[:points])
+              end
+            end
+          end
+        end
+      end
+    
+  array_of_points_scored
+
+  most_points = array_of_points_scored[0]
+  counter = 0
+  while counter < array_of_points_scored.length do
+    if array_of_points_scored[counter] > most_points
+      most_points = array_of_points_scored[counter]
+    end 
+    counter += 1
+  end
+  most_points
+
+   game_hash.each do |location, nested_hash|
+      nested_hash.each do |team_data, nested_structures|
+        if nested_structures.class == Array
+            nested_structures.each do |nested_hash|
+              if nested_hash.class == Hash && nested_hash[:points] == most_points
+                    puts nested_hash[:player_name]
               end
             end
           end
