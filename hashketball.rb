@@ -300,3 +300,32 @@ def most_points_scored
         end
       end
 end
+
+def player_with_longest_name
+
+  game_hash
+  array_of_names = []
+
+  game_hash.each do |location, nested_hash|
+    nested_hash.each do |general_info, nested_data|
+      if nested_data.class == Array
+        nested_data.each do |nested_hash|
+          if nested_hash.class == Hash
+            array_of_names.push(nested_hash[:player_name])
+          end
+        end
+      end
+    end
+  end
+
+  longest_name = array_of_names[0]
+
+  counter = 0
+  while counter < array_of_names.length do 
+    if array_of_names[counter].length > longest_name.length
+      longest_name = array_of_names[counter]
+    end
+    counter += 1
+  end 
+  longest_name
+end
