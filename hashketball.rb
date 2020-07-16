@@ -320,14 +320,12 @@ def player_with_longest_name
 
   longest_name = array_of_names[0]
 
-  counter = 0
-  while counter < array_of_names.length do 
-    if array_of_names[counter].length > longest_name.length
-      longest_name = array_of_names[counter]
+  array_of_names.each_index do |index|
+    if array_of_names[index].length > longest_name.length
+      longest_name = array_of_names[index]
     end
-    counter += 1
   end 
-  longest_name
+  return longest_name
 end
 
 def winning_team
