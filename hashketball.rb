@@ -360,3 +360,43 @@ def winning_team
   charlotte_sum > brooklyn_sum ? (return "Charlotte Hornets, #{charlotte_sum}") : (return "Brooklyn Nets, #{brooklyn_sum}")
   
   end
+  
+  #helper method test not working
+  
+  
+  # def player_stats(game_hash)
+  # player_array = []
+  # game_hash.each do |team_location, first_nested_hash|
+  #   first_nested_hash.each do |keys, arrays_and_strings|
+  #     if arrays_and_strings.class == Array
+  #       arrays_and_strings.each do |player_stats|
+  #         if player_stats.class == Hash
+  #           player_array.push(player_stats)
+  #         end
+  #         end
+  #       end
+  #     end
+  #   end
+  #   return player_array
+  # end
+
+# def num_points_scored(player)
+#   game_hash
+#   player_array = player_stats(game_hash)
+#   player_array.each do |player_hash|
+#       if player_hash[:player_name] == player
+#         puts player_hash[:points]
+#       end
+#     end
+# end
+ 
+#   def shoe_size(player)
+#     game_hash
+#     player_array = player_stats(game_hash)
+    
+#     player_array.each do |player_hash|
+#         if player_hash[:player_name] == player
+#           puts player_hash[:shoe]
+#         end
+#       end
+#   end
