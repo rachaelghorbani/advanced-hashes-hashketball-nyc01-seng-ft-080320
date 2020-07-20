@@ -163,6 +163,10 @@ def shoe_size(player)
   end
 end
 
+#Or can create a method that creates an array of player stats and call it to get individual DATA
+
+
+
 def team_colors(team_name)
   game_hash
 
