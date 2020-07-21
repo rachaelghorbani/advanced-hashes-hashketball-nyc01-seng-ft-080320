@@ -129,6 +129,10 @@ def game_hash
   }
 end
 
+
+######### SOLUTIONS WITHOUT THE USE OF HELPER METHODS #########
+
+
 # def num_points_scored(player)
 #   game_hash
   
@@ -164,22 +168,22 @@ end
 # end
 
 
-def team_colors(team_name)
-  game_hash.each do |location, nested_hash|
-    if nested_hash[:team_name] == team_name
-      return nested_hash[:colors]
-    end
-  end
-end
+# def team_colors(team_name)
+#   game_hash.each do |location, nested_hash|
+#     if nested_hash[:team_name] == team_name
+#       return nested_hash[:colors]
+#     end
+#   end
+# end
 
-def team_names
-  array_of_team_names = []
+# def team_names
+#   array_of_team_names = []
   
-  game_hash.each do |location, inner_hash|
-    array_of_team_names.push(inner_hash[:team_name])
-  end
-  array_of_team_names
-end
+#   game_hash.each do |location, inner_hash|
+#     array_of_team_names.push(inner_hash[:team_name])
+#   end
+#   array_of_team_names
+# end
 
 # def player_numbers(team)
 #   game_hash
@@ -358,9 +362,9 @@ end
   
 #   end
   
-  #Solved using helper method
+######### SOLUTIONS USING HELPER METHODS #########
   
-  #Helper Methods 
+        ######### HELPER METHODS ######### 
   
 def player_hashes
   player_array = []
@@ -377,6 +381,8 @@ def player_hashes
   end
   player_array
 end
+
+
   
 def team_player_info(team)
   array_of_team_players = []
@@ -388,7 +394,9 @@ def team_player_info(team)
   end
 end
 
-###
+        ######### END OF HELPER METHODS ######### 
+        
+        
 
 def num_points_scored(player)
   player_hashes.each do |player_hash|
@@ -410,12 +418,23 @@ end
 
 
 
-def player_stats(player)
-  player_hashes.each do |player_hash|
-    if player_hash[:player_name] == player
-      return player_hash
+def team_colors(team_name)
+  game_hash.each do |location, nested_hash|
+    if nested_hash[:team_name] == team_name
+      return nested_hash[:colors]
     end
   end
+end
+
+
+
+def team_names
+  array_of_team_names = []
+  
+  game_hash.each do |location, inner_hash|
+    array_of_team_names.push(inner_hash[:team_name])
+  end
+  array_of_team_names
 end
 
 
@@ -427,6 +446,16 @@ def player_numbers(team)
     array_of_numbers.push(inner_player_hashes[:number])
   end
   array_of_numbers
+end
+
+
+
+def player_stats(player)
+  player_hashes.each do |player_hash|
+    if player_hash[:player_name] == player
+      return player_hash
+    end
+  end
 end
 
 
@@ -448,6 +477,7 @@ def big_shoe_rebounds
 end
 
 
+
 def most_points_scored
   
   array_of_points_scored = []
@@ -463,6 +493,7 @@ def most_points_scored
     end
   end
 end
+
 
 
 def player_with_longest_name
@@ -481,6 +512,7 @@ def player_with_longest_name
   end
   return longest_name
 end
+
 
 
 def winning_team
@@ -507,6 +539,8 @@ def winning_team
     return brooklyn_total
   end
 end
+
+
 
 def long_name_steals_a_ton?
   array_of_steals = []
