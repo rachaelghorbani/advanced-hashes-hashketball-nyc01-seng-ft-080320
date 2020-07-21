@@ -385,9 +385,9 @@ end
 
   
 def team_player_info(team)
-  game_hash.each do |team_location, nested_hash|
-    if nested_hash[:team_name] == team
-      return nested_hash[:players]
+  game_hash.each do |team_location, player_info|
+    if player_info[:team_name] == team
+      return player_info[:players]
     end
   end
 end
