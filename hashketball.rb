@@ -129,44 +129,42 @@ def game_hash
   }
 end
 
-def num_points_scored(player)
-  game_hash
+# def num_points_scored(player)
+#   game_hash
   
-  game_hash.each do |team_location, first_nested_hash|
-    first_nested_hash.each do |keys, arrays_and_strings|
-      if arrays_and_strings.class == Array
-        arrays_and_strings.each do |player_stats|
-          if player_stats.class == Hash && player_stats[:player_name] == player
-            return player_stats[:points]
-          end
-        end
-      end
-    end
-  end
-end
+#   game_hash.each do |team_location, first_nested_hash|
+#     first_nested_hash.each do |keys, arrays_and_strings|
+#       if arrays_and_strings.class == Array
+#         arrays_and_strings.each do |player_stats|
+#           if player_stats.class == Hash && player_stats[:player_name] == player
+#             return player_stats[:points]
+#           end
+#         end
+#       end
+#     end
+#   end
+# end
 
 
-def shoe_size(player)
+# def shoe_size(player)
   
-  game_hash
+#   game_hash
   
-  game_hash.each do |team_location, first_nested_hash|
-    first_nested_hash.each do |keys, arrays_and_strings|
-      if arrays_and_strings.class == Array
-        arrays_and_strings.each do |player_stats|
-          if player_stats.class == Hash && player_stats[:player_name] == player
-            return player_stats[:shoe]
-          end
-        end
-      end
-    end
-  end
-end
+#   game_hash.each do |team_location, first_nested_hash|
+#     first_nested_hash.each do |keys, arrays_and_strings|
+#       if arrays_and_strings.class == Array
+#         arrays_and_strings.each do |player_stats|
+#           if player_stats.class == Hash && player_stats[:player_name] == player
+#             return player_stats[:shoe]
+#           end
+#         end
+#       end
+#     end
+#   end
+# end
 
 
 def team_colors(team_name)
-  game_hash
-
   game_hash.each do |location, nested_hash|
     if nested_hash[:team_name] == team_name
       return nested_hash[:colors]
@@ -175,7 +173,6 @@ def team_colors(team_name)
 end
 
 def team_names
-  game_hash
   array = []
   
   game_hash.each do |location, inner_hash|
@@ -184,123 +181,123 @@ def team_names
   array
 end
 
-def player_numbers(team)
-  game_hash
-  array_of_players_numbers = []
+# def player_numbers(team)
+#   game_hash
+#   array_of_players_numbers = []
 
-  game_hash.each do |location, nested_hash|
-    if nested_hash[:team_name] == team
-      nested_hash.each do |team_data, nested_structures|
-        if nested_structures.class == Array
-            nested_structures.each do |nested_hash|
-              if nested_hash.class == Hash
-                array_of_players_numbers.push(nested_hash[:number])
-              end
-            end
-          end
-        end
-      end
-    end
-  array_of_players_numbers
-end
+#   game_hash.each do |location, nested_hash|
+#     if nested_hash[:team_name] == team
+#       nested_hash.each do |team_data, nested_structures|
+#         if nested_structures.class == Array
+#             nested_structures.each do |nested_hash|
+#               if nested_hash.class == Hash
+#                 array_of_players_numbers.push(nested_hash[:number])
+#               end
+#             end
+#           end
+#         end
+#       end
+#     end
+#   array_of_players_numbers
+# end
 
-def player_stats(player)
-  game_hash
+# def player_stats(player)
+#   game_hash
   
-  game_hash.each do |team_location, first_nested_hash|
-    first_nested_hash.each do |keys, arrays_and_strings|
-      if arrays_and_strings.class == Array
-        arrays_and_strings.each do |player_stats|
-          if player_stats.class == Hash && player_stats[:player_name] == player
-            return player_stats
-          end
-        end
-      end
-    end
-  end
-end
+#   game_hash.each do |team_location, first_nested_hash|
+#     first_nested_hash.each do |keys, arrays_and_strings|
+#       if arrays_and_strings.class == Array
+#         arrays_and_strings.each do |player_stats|
+#           if player_stats.class == Hash && player_stats[:player_name] == player
+#             return player_stats
+#           end
+#         end
+#       end
+#     end
+#   end
+# end
 
-def big_shoe_rebounds
-  game_hash
-  array_of_shoe_sizes = []
+# def big_shoe_rebounds
+#   game_hash
+#   array_of_shoe_sizes = []
 
-    game_hash.each do |location, nested_hash|
-      nested_hash.each do |team_data, nested_structures|
-        if nested_structures.class == Array
-            nested_structures.each do |nested_hash|
-              if nested_hash.class == Hash
-                array_of_shoe_sizes.push(nested_hash[:shoe])
-              end
-            end
-          end
-        end
-      end
+#     game_hash.each do |location, nested_hash|
+#       nested_hash.each do |team_data, nested_structures|
+#         if nested_structures.class == Array
+#             nested_structures.each do |nested_hash|
+#               if nested_hash.class == Hash
+#                 array_of_shoe_sizes.push(nested_hash[:shoe])
+#               end
+#             end
+#           end
+#         end
+#       end
     
-  array_of_shoe_sizes
+#   array_of_shoe_sizes
 
-  largest_shoe = array_of_shoe_sizes[0]
-  counter = 0
-  while counter < array_of_shoe_sizes.length do
-    if array_of_shoe_sizes[counter] > largest_shoe
-      largest_shoe = array_of_shoe_sizes[counter]
-    end 
-    counter += 1
-  end
-  largest_shoe
+#   largest_shoe = array_of_shoe_sizes[0]
+#   counter = 0
+#   while counter < array_of_shoe_sizes.length do
+#     if array_of_shoe_sizes[counter] > largest_shoe
+#       largest_shoe = array_of_shoe_sizes[counter]
+#     end 
+#     counter += 1
+#   end
+#   largest_shoe
 
-   game_hash.each do |location, nested_hash|
-      nested_hash.each do |team_data, nested_structures|
-        if nested_structures.class == Array
-            nested_structures.each do |nested_hash|
-              if nested_hash.class == Hash && nested_hash[:shoe] == largest_shoe
-                 return nested_hash[:rebounds]
-              end
-            end
-          end
-        end
-      end
-end
+#   game_hash.each do |location, nested_hash|
+#       nested_hash.each do |team_data, nested_structures|
+#         if nested_structures.class == Array
+#             nested_structures.each do |nested_hash|
+#               if nested_hash.class == Hash && nested_hash[:shoe] == largest_shoe
+#                 return nested_hash[:rebounds]
+#               end
+#             end
+#           end
+#         end
+#       end
+# end
 
-def most_points_scored
-  game_hash
-  array_of_points_scored = []
+# def most_points_scored
+#   game_hash
+#   array_of_points_scored = []
 
-    game_hash.each do |location, nested_hash|
-      nested_hash.each do |team_data, nested_structures|
-        if nested_structures.class == Array
-            nested_structures.each do |nested_hash|
-              if nested_hash.class == Hash
-                array_of_points_scored.push(nested_hash[:points])
-              end
-            end
-          end
-        end
-      end
+#     game_hash.each do |location, nested_hash|
+#       nested_hash.each do |team_data, nested_structures|
+#         if nested_structures.class == Array
+#             nested_structures.each do |nested_hash|
+#               if nested_hash.class == Hash
+#                 array_of_points_scored.push(nested_hash[:points])
+#               end
+#             end
+#           end
+#         end
+#       end
     
-  array_of_points_scored
+#   array_of_points_scored
 
-  most_points = array_of_points_scored[0]
-  counter = 0
-  while counter < array_of_points_scored.length do
-    if array_of_points_scored[counter] > most_points
-      most_points = array_of_points_scored[counter]
-    end 
-    counter += 1
-  end
-  most_points
+#   most_points = array_of_points_scored[0]
+#   counter = 0
+#   while counter < array_of_points_scored.length do
+#     if array_of_points_scored[counter] > most_points
+#       most_points = array_of_points_scored[counter]
+#     end 
+#     counter += 1
+#   end
+#   most_points
 
-   game_hash.each do |location, nested_hash|
-      nested_hash.each do |team_data, nested_structures|
-        if nested_structures.class == Array
-            nested_structures.each do |nested_hash|
-              if nested_hash.class == Hash && nested_hash[:points] == most_points
-                    puts nested_hash[:player_name]
-              end
-            end
-          end
-        end
-      end
-end
+#   game_hash.each do |location, nested_hash|
+#       nested_hash.each do |team_data, nested_structures|
+#         if nested_structures.class == Array
+#             nested_structures.each do |nested_hash|
+#               if nested_hash.class == Hash && nested_hash[:points] == most_points
+#                     puts nested_hash[:player_name]
+#               end
+#             end
+#           end
+#         end
+#       end
+# end
 
 def player_with_longest_name
 
@@ -361,42 +358,108 @@ def winning_team
   
   end
   
-  #helper method test not working
+  #Solved using helper method
   
+  #Helper Methods 
   
-  # def player_stats(game_hash)
-  # player_array = []
-  # game_hash.each do |team_location, first_nested_hash|
-  #   first_nested_hash.each do |keys, arrays_and_strings|
-  #     if arrays_and_strings.class == Array
-  #       arrays_and_strings.each do |player_stats|
-  #         if player_stats.class == Hash
-  #           player_array.push(player_stats)
-  #         end
-  #         end
-  #       end
-  #     end
-  #   end
-  #   return player_array
-  # end
+def player_hashes
+  player_array = []
+  game_hash.each do |team_location, first_nested_hash|
+    first_nested_hash.each do |keys, arrays_and_strings|
+      if arrays_and_strings.class == Array
+        arrays_and_strings.each do |player_stats|
+          if player_stats.class == Hash
+            player_array.push(player_stats)
+          end
+        end
+      end
+    end
+  end
+  player_array
+end
+  
+def team_player_info(team)
+  array_of_team_players = []
+  
+  game_hash.each do |team_location, nested_hash|
+    if nested_hash[:team_name] == team
+      return nested_hash[:players]
+    end
+  end
+end
 
-# def num_points_scored(player)
-#   game_hash
-#   player_array = player_stats(game_hash)
-#   player_array.each do |player_hash|
-#       if player_hash[:player_name] == player
-#         puts player_hash[:points]
-#       end
-#     end
-# end
+###
+
+def num_points_scored(player)
+  player_hashes.each do |player_hash|
+    if player_hash[:player_name] == player
+      return player_hash[:points]
+    end
+  end
+end
+
+
  
-#   def shoe_size(player)
-#     game_hash
-#     player_array = player_stats(game_hash)
+def shoe_size(player)
+  player_hashes.each do |player_hash|
+    if player_hash[:player_name] == player
+      return player_hash[:shoe]
+    end
+  end
+end
+
+
+
+def player_stats(player)
+  player_hashes.each do |player_hash|
+    if player_hash[:player_name] == player
+      return player_hash
+    end
+  end
+end
+
+
+
+def player_numbers(team)
+  array_of_numbers = []
+  players_info = team_player_info(team)
+  players_info.each do |inner_player_hashes|
+    array_of_numbers.push(inner_player_hashes[:number])
+  end
+  array_of_numbers
+end
+
+
+
+def big_shoe_rebounds
+  array_of_shoe_sizes = []
+
+  player_hashes.each do |individual_player_stats|
+    array_of_shoe_sizes.push(individual_player_stats[:shoe])
+   end
+   
+  largest_shoe = array_of_shoe_sizes.max
+
+  player_hashes.each do |individual_player_stats|
+    if individual_player_stats[:shoe] == largest_shoe
+      return individual_player_stats[:rebounds]
+    end
+  end
+end
+
+
+def most_points_scored
+  
+  array_of_points_scored = []
+
+  player_hashes.each do |individual_player_stats|
+    array_of_points_scored.push(individual_player_stats[:points])
+  end
+  most_points = array_of_points_scored.max
     
-#     player_array.each do |player_hash|
-#         if player_hash[:player_name] == player
-#           puts player_hash[:shoe]
-#         end
-#       end
-#   end
+  player_hashes.each do |individual_player_stats|
+    if individual_player_stats[:points] == most_points
+      return individual_player_stats[:player_name]
+    end
+  end
+end
