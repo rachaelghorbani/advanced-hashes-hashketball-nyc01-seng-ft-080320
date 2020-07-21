@@ -299,64 +299,64 @@ end
 #       end
 # end
 
-def player_with_longest_name
+# def player_with_longest_name
 
-  game_hash
-  array_of_names = []
+#   game_hash
+#   array_of_names = []
 
-  game_hash.each do |location, nested_hash|
-    nested_hash.each do |general_info, nested_data|
-      if nested_data.class == Array
-        nested_data.each do |nested_hash|
-          if nested_hash.class == Hash
-            array_of_names.push(nested_hash[:player_name])
-          end
-        end
-      end
-    end
-  end
+#   game_hash.each do |location, nested_hash|
+#     nested_hash.each do |general_info, nested_data|
+#       if nested_data.class == Array
+#         nested_data.each do |nested_hash|
+#           if nested_hash.class == Hash
+#             array_of_names.push(nested_hash[:player_name])
+#           end
+#         end
+#       end
+#     end
+#   end
 
-  longest_name = array_of_names[0]
+#   longest_name = array_of_names[0]
 
-  array_of_names.each_index do |index|
-    if array_of_names[index].length > longest_name.length
-      longest_name = array_of_names[index]
-    end
-  end 
-  return longest_name
-end
+#   array_of_names.each_index do |index|
+#     if array_of_names[index].length > longest_name.length
+#       longest_name = array_of_names[index]
+#     end
+#   end 
+#   return longest_name
+# end
 
-def winning_team
+# def winning_team
 
-  game_hash
-  array_of_brooklyn_scores = []
-  array_of_charlotte_scores = []
+#   game_hash
+#   array_of_brooklyn_scores = []
+#   array_of_charlotte_scores = []
 
-  game_hash.each do |location, nested_hash|
-    nested_hash.each do |general_info, nested_data|
+#   game_hash.each do |location, nested_hash|
+#     nested_hash.each do |general_info, nested_data|
       
-      if nested_hash[:team_name] == "Brooklyn Nets" && nested_data.class == Array 
-        nested_data.each do |nested_hash|
-          if nested_hash.class == Hash 
-            array_of_brooklyn_scores.push(nested_hash[:points])
-          end
-        end
-      elsif nested_hash[:team_name] == "Charlotte Hornets" && nested_data.class == Array 
-        nested_data.each do |nested_hash|
-          if nested_hash.class == Hash 
-            array_of_charlotte_scores.push(nested_hash[:points])
-          end
-        end
-      end
-    end
-  end
+#       if nested_hash[:team_name] == "Brooklyn Nets" && nested_data.class == Array 
+#         nested_data.each do |nested_hash|
+#           if nested_hash.class == Hash 
+#             array_of_brooklyn_scores.push(nested_hash[:points])
+#           end
+#         end
+#       elsif nested_hash[:team_name] == "Charlotte Hornets" && nested_data.class == Array 
+#         nested_data.each do |nested_hash|
+#           if nested_hash.class == Hash 
+#             array_of_charlotte_scores.push(nested_hash[:points])
+#           end
+#         end
+#       end
+#     end
+#   end
 
-  brooklyn_sum = array_of_brooklyn_scores.sum
-  charlotte_sum = array_of_charlotte_scores.sum
+#   brooklyn_sum = array_of_brooklyn_scores.sum
+#   charlotte_sum = array_of_charlotte_scores.sum
 
-  charlotte_sum > brooklyn_sum ? (return "Charlotte Hornets, #{charlotte_sum}") : (return "Brooklyn Nets, #{brooklyn_sum}")
+#   charlotte_sum > brooklyn_sum ? (return "Charlotte Hornets, #{charlotte_sum}") : (return "Brooklyn Nets, #{brooklyn_sum}")
   
-  end
+#   end
   
   #Solved using helper method
   
@@ -461,5 +461,49 @@ def most_points_scored
     if individual_player_stats[:points] == most_points
       return individual_player_stats[:player_name]
     end
+  end
+end
+
+
+def player_with_longest_name
+
+  array_of_names = []
+
+  player_hashes.each do |individual_player_stats|
+    array_of_names.push(individual_player_stats[:player_name])
+  end
+
+  longest_name = array_of_names[0]
+  array_of_names.each do |name|
+    if name.length > longest_name.length
+      longest_name = name 
+    end
+  end
+  return longest_name
+end
+
+
+def winning_team
+  brooklyn_players = team_player_info("Brooklyn Nets")
+  charlotte_players = team_player_info("Charlotte Hornets")
+  
+  array_of_brooklyn_scores = []
+  array_of_charlotte_scores = []
+
+  brooklyn_players.each do |player_stats|
+    array_of_brooklyn_scores.push(player_stats[:points])
+  end
+  
+  charlotte_players.each do |player_stats|
+    array_of_charlotte_scores.push(player_stats[:points])
+  end
+  
+ brooklyn_total = array_of_brooklyn_scores.sum
+ charlotte_total = array_of_charlotte_scores.sum
+
+  if charlotte_total > brooklyn_total
+    return charlotte_total 
+  else
+    return brooklyn_total
   end
 end
