@@ -549,9 +549,7 @@ def long_name_steals_a_ton?
   most_steals = array_of_steals.max
 
   player_hashes.each do |player_stats|
-    if player_stats[:player_name] == player_with_longest_name && player_stats[:steals] == most_steals
-      return true
-    end
+    return true if player_stats[:player_name] == player_with_longest_name && player_stats[:steals] == most_steals
   end
   return false
 end
