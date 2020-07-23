@@ -366,22 +366,26 @@ end
   
         ######### HELPER METHODS ######### 
   
-def player_hashes
-  player_array = []
-  game_hash.each do |team_location, first_nested_hash|
-    first_nested_hash.each do |keys, arrays_and_strings|
-      if arrays_and_strings.class == Array
-        arrays_and_strings.each do |player_stats|
-          if player_stats.class == Hash
-            player_array.push(player_stats)
-          end
-        end
-      end
-    end
-  end
-  player_array
-end
+# def player_hashes
+#   player_array = []
+#   game_hash.each do |team_location, first_nested_hash|
+#     first_nested_hash.each do |keys, arrays_and_strings|
+#       if arrays_and_strings.class == Array
+#         arrays_and_strings.each do |player_stats|
+#           if player_stats.class == Hash
+#             player_array.push(player_stats)
+#           end
+#         end
+#       end
+#     end
+#   end
+#   player_array
+# end
 
+def player_hashes
+  player_array = game_hash[:home][:players] 
+  player_array += game_hash[:away][:players]
+end
 
   
 def team_player_info(team)
