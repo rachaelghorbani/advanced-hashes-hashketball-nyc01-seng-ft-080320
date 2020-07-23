@@ -541,10 +541,9 @@ end
 
 
 def long_name_steals_a_ton?
-  array_of_steals = []
 
-  player_hashes.each do |player_stats|
-    array_of_steals.push(player_stats[:steals])
+  array_of_steals = player_hashes.map do |player_stats|
+    player_stats[:steals]
   end
   most_steals = array_of_steals.max
 
