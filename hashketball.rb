@@ -389,7 +389,7 @@ end
 
   
 def team_player_info(team)
-  game_hash.each do |team_location, player_info|
+  game_hash.values.each do |player_info|
     if player_info[:team_name] == team
       return player_info[:players]
     end
@@ -421,7 +421,7 @@ end
 
 
 def team_colors(team_name)
-  game_hash.each do |location, nested_hash|
+  game_hash.values.each do |nested_hash|
     if nested_hash[:team_name] == team_name
       return nested_hash[:colors]
     end
@@ -431,23 +431,18 @@ end
 
 
 def team_names
-  array_of_team_names = []
-  
-  game_hash.each do |location, inner_hash|
-    array_of_team_names.push(inner_hash[:team_name])
+  team_names = game_hash.values.map do |inner_hash|
+    inner_hash[:team_name]
   end
-  array_of_team_names
 end
 
 
 
 def player_numbers(team)
-  array_of_numbers = []
   players_info = team_player_info(team)
-  players_info.each do |inner_player_hashes|
-    array_of_numbers.push(inner_player_hashes[:number])
+  players_numbers = players_info.map do |inner_player_hashes|
+    inner_player_hashes[:number]
   end
-  array_of_numbers
 end
 
 
@@ -463,10 +458,10 @@ end
 
 
 def big_shoe_rebounds
-  array_of_shoe_sizes = []
+ 
 
-  player_hashes.each do |individual_player_stats|
-    array_of_shoe_sizes.push(individual_player_stats[:shoe])
+  array_of_shoe_sizes = player_hashes.map do |individual_player_stats|
+    individual_player_stats[:shoe]
    end
    
   largest_shoe = array_of_shoe_sizes.max
@@ -517,29 +512,47 @@ end
 
 
 
+# def winning_team
+#   brooklyn_players = team_player_info("Brooklyn Nets")
+#   charlotte_players = team_player_info("Charlotte Hornets")
+  
+#   array_of_brooklyn_scores = []
+#   array_of_charlotte_scores = []
+
+#   brooklyn_players.each do |player_stats|
+#     array_of_brooklyn_scores.push(player_stats[:points])
+#   end
+  
+#   charlotte_players.each do |player_stats|
+#     array_of_charlotte_scores.push(player_stats[:points])
+#   end
+  
+# brooklyn_total = array_of_brooklyn_scores.sum
+# charlotte_total = array_of_charlotte_scores.sum
+
+#   if charlotte_total > brooklyn_total
+#     return charlotte_total 
+#   else
+#     return brooklyn_total
+#   end
+# end
+
+
+
 def winning_team
   brooklyn_players = team_player_info("Brooklyn Nets")
   charlotte_players = team_player_info("Charlotte Hornets")
-  
-  array_of_brooklyn_scores = []
-  array_of_charlotte_scores = []
 
-  brooklyn_players.each do |player_stats|
-    array_of_brooklyn_scores.push(player_stats[:points])
-  end
-  
-  charlotte_players.each do |player_stats|
-    array_of_charlotte_scores.push(player_stats[:points])
-  end
-  
- brooklyn_total = array_of_brooklyn_scores.sum
- charlotte_total = array_of_charlotte_scores.sum
+  brooklyn_scores = brooklyn_players.map {|stats|
+    stats[:points]}
 
-  if charlotte_total > brooklyn_total
-    return charlotte_total 
-  else
-    return brooklyn_total
-  end
+  charlotte_scores = charlotte_players.map {|stats|
+    stats[:points]}
+  
+  brooklyn_total = brooklyn_scores.sum
+  charlotte_total = charlotte_scores.sum
+
+  charlotte_total > brooklyn_total ? (return charlotte_total) : (return brooklyn_total)
 end
 
 
