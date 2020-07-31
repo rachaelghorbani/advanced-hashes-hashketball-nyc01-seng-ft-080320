@@ -458,9 +458,7 @@ end
 
 
 def big_shoe_rebounds
- 
-
-  array_of_shoe_sizes = player_hashes.map do |individual_player_stats|
+ array_of_shoe_sizes = player_hashes.map do |individual_player_stats|
     individual_player_stats[:shoe]
    end
    
@@ -476,13 +474,10 @@ end
 
 
 def most_points_scored
-  
-  array_of_points_scored = []
-
-  player_hashes.each do |individual_player_stats|
-    array_of_points_scored.push(individual_player_stats[:points])
+  points_scored = player_hashes.map do |individual_player_stats|
+    individual_player_stats[:points]
   end
-  most_points = array_of_points_scored.max
+  most_points = points_scored.max
     
   player_hashes.each do |individual_player_stats|
     if individual_player_stats[:points] == most_points
@@ -494,15 +489,12 @@ end
 
 
 def player_with_longest_name
-
-  array_of_names = []
-
-  player_hashes.each do |individual_player_stats|
-    array_of_names.push(individual_player_stats[:player_name])
+  names = player_hashes.map do |individual_player_stats|
+    individual_player_stats[:player_name]
   end
 
-  longest_name = array_of_names[0]
-  array_of_names.each do |name|
+  longest_name = names[0]
+  names.each do |name|
     if name.length > longest_name.length
       longest_name = name 
     end
