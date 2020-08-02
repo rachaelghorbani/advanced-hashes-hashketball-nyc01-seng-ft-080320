@@ -442,9 +442,7 @@ end
 
 def player_stats(player)
   player_hashes.each do |player_hash|
-    if player_hash[:player_name] == player
-      return player_hash
-    end
+     return player_hash if player_hash[:player_name] == player
   end
 end
 
