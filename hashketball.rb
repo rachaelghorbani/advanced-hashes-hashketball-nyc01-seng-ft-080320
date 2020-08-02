@@ -402,9 +402,7 @@ end
 
 def num_points_scored(player)
   player_hashes.each do |player_hash|
-    if player_hash[:player_name] == player
-      return player_hash[:points]
-    end
+    return player_hash[:points] if player_hash[:player_name] == player
   end
 end
 
