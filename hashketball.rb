@@ -422,9 +422,7 @@ end
 
 def team_colors(team_name)
   game_hash.values.each do |nested_hash|
-    if nested_hash[:team_name] == team_name
-      return nested_hash[:colors]
-    end
+    return nested_hash[:colors] if nested_hash[:team_name] == team_name
   end
 end
 
