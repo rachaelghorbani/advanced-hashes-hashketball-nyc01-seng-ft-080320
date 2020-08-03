@@ -425,7 +425,7 @@ end
 
 
 def team_names
-  team_names = game_hash.values.map {|inner_hash|
+  game_hash.values.map {|inner_hash|
     inner_hash[:team_name]}
 end
 
