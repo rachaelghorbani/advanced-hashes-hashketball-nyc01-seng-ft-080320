@@ -433,7 +433,7 @@ end
 
 def player_numbers(team)
   players_info = team_player_info(team)
-  players_numbers = players_info.map do |inner_player_hashes|
+  players_info.map do |inner_player_hashes|
     inner_player_hashes[:number]
   end
 end
