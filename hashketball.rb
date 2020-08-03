@@ -425,7 +425,7 @@ end
 
 
 def team_names
-  team_names = game_hash.values.map {|inner_hash|
+  game_hash.values.map {|inner_hash|
     inner_hash[:team_name]}
 end
 
@@ -433,7 +433,7 @@ end
 
 def player_numbers(team)
   players_info = team_player_info(team)
-  players_numbers = players_info.map do |inner_player_hashes|
+  players_info.map do |inner_player_hashes|
     inner_player_hashes[:number]
   end
 end
@@ -469,9 +469,7 @@ def most_points_scored
   most_points = points_scored.max
     
   player_hashes.each do |individual_player_stats|
-    if individual_player_stats[:points] == most_points
-      return individual_player_stats[:player_name]
-    end
+    return individual_player_stats[:player_name] if individual_player_stats[:points] == most_points
   end
 end
 
